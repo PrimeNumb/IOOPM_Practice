@@ -15,7 +15,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 /// ADDITI0NS //////////////////////////////////////////////////////////////////
 
-/// Todo 1: add Quote class
 class Quote extends Expression
 {
     private Expression subExpr;
@@ -32,16 +31,15 @@ class Quote extends Expression
 
     public String asString()
     {
-	return "Quote(" + subExpr.asString() + ")";
+	return "Quote(" + this.subExpr.asString() + ")";
     }
     
     @Override
     public String toString()
     {
-	return "Quote(" + subExpr.toString() + ")";
+	return "Quote(" + this.subExpr.toString() + ")";
     }
 }
-/// Todo 2: add Unquote class
 class Unquote extends Expression
 {
     private Expression subExpr;
@@ -54,17 +52,17 @@ class Unquote extends Expression
     @Override
     public String toString()
     {
-	return "Unquote(" + subExpr.toString() + ")";
+	return "Unquote(" + this.subExpr.toString() + ")";
     }
 
     public String asString()
     {
-	if(subExpr instanceof Unquote)
+	if(this.subExpr instanceof Unquote)
 	{
 	    throw new RuntimeException("Unquote appeared outside of Quote");
 	}
 	
-	return subExpr.eval().asString();
+	return this.subExpr.eval().asString();
     }
 
     public Constant eval()
