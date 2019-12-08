@@ -24,11 +24,13 @@ class Quote extends Expression
 	this.subExpr = e;
     }
 
+    @Override
     public Constant eval()
     {
 	return new StringLiteral(this.subExpr.asString());
     }
 
+    @Override
     public String asString()
     {
 	return "Quote(" + this.subExpr.asString() + ")";
@@ -55,16 +57,13 @@ class Unquote extends Expression
 	return "Unquote(" + this.subExpr.toString() + ")";
     }
 
+    @Override
     public String asString()
-    {
-	if(this.subExpr instanceof Unquote)
-	{
-	    throw new RuntimeException("Unquote appeared outside of Quote");
-	}
-	
+    {	
 	return this.subExpr.eval().asString();
     }
 
+    @Override
     public Constant eval()
     {
 	throw new RuntimeException("Unquote appeared outside of Quote");
